@@ -17,20 +17,20 @@ public class BookstoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BookstoreApplication.class, args);
 	}
-	
-	@Bean
-	public CommandLineRunner bookDemo(BookRepository repository) {
-		return (args) -> {
-			log.info("inserting 2 books into the database");
-			repository.save(new Book("Fight Club", "Chuck Palahniuk", "197281726-21", 1996, 12.00)); 
-			repository.save(new Book("Game of Thrones", "George R. R. Martin", "174107842-51", 1996, 20.00));
-			repository.save(new Book("Dune", "Frank Herbert", "1251521-31", 1965, 35.00));
-			
-			log.info("fetch all books");
-			for (Book book : repository.findAll()) {
-				log.info(book.toString());
-			}
 
-		};
-	}
+    @Bean
+    CommandLineRunner bookDemo(BookRepository repository) {
+        return (args) -> {
+            log.info("inserting 2 books into the database");
+            repository.save(new Book("Fight Club", "Chuck Palahniuk", "197281726-21", 1996, 12.00));
+            repository.save(new Book("Game of Thrones", "George R. R. Martin", "174107842-51", 1996, 20.00));
+            repository.save(new Book("Dune", "Frank Herbert", "1251521-31", 1965, 35.00));
+
+            log.info("fetch all books");
+            for (Book book : repository.findAll()) {
+                log.info(book.toString());
+            }
+
+        };
+    }
 }
