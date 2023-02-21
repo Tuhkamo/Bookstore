@@ -10,13 +10,15 @@
 	<table class="table table-striped">
 		<tr>
 			<th>Title</th>
+			<th>Category</th>
 			<th>Author</th>
 			<th>Year</th>
 			<th>ISBN</th>
-			<th>Price</th>
+			<th>Price</th>
 		</tr>
 		<tr th:each="book : ${books}">
 			<td th:text="${book.title}"></td>
+			<td th:text="${book.category.name}"></td>
 			<td th:text="${book.author}"></td>
 			<td th:text="${book.year}"></td>
 			<td th:text="${book.isbn}"></td>

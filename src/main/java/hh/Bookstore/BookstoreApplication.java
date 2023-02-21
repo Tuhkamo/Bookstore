@@ -25,9 +25,12 @@ public class BookstoreApplication {
 		return (args) -> {
 			
 			log.info("Saving sample categories");
-			crepository.save(new Category("Sci-Fi"));
-			crepository.save(new Category("Drama"));
-			crepository.save(new Category("Fantasy"));
+			Category categorySF = new Category("Sci-Fi");
+			crepository.save(categorySF);
+			Category categoryD = new Category("Drama");
+			crepository.save(categoryD);
+			Category categoryF = new Category("Fantasy");
+			crepository.save(categoryF);
 			
 			log.info("fetch all categories");
 			for (Category category : crepository.findAll()) {
@@ -35,9 +38,9 @@ public class BookstoreApplication {
 			}
 			
 			log.info("Saving sample books");
-			brepository.save(new Book("Fight Club", "Chuck Palahniuk", "197281726-21", 1996, 12.00)); 
-			brepository.save(new Book("Game of Thrones", "George R. R. Martin", "174107842-51", 1996, 20.00));
-			brepository.save(new Book("Dune", "Frank Herbert", "1251521-31", 1965, 35.00));
+			brepository.save(new Book("Fight Club", "Chuck Palahniuk", "197281726-21", 1996, 12.00, categoryD)); 
+			brepository.save(new Book("Game of Thrones", "George R. R. Martin", "174107842-51", 1996, 20.00, categoryF));
+			brepository.save(new Book("Dune", "Frank Herbert", "1251521-31", 1965, 35.00, categorySF));
 			
 			log.info("fetch all books");
 			for (Book book : brepository.findAll()) {
