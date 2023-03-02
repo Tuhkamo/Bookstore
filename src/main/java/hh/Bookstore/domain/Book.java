@@ -1,5 +1,7 @@
 package hh.Bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +23,7 @@ public class Book {
 	private int year;
 	
 	@ManyToOne
+	@JsonIgnoreProperties ("books")
 	@JoinColumn(name = "categoryid")
 	private Category category;
 	
