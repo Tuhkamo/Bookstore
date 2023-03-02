@@ -51,10 +51,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>fi.haagahelia.course</groupId>
-			<artifactId>StudentListOneToMany</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-data-rest</artifactId>
+</dependency>
 	</dependencies>
 
 	<build>

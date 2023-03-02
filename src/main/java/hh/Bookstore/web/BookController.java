@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import hh.Bookstore.domain.Book;
@@ -24,13 +27,13 @@ public class BookController {
 	@Autowired
 	private CategoryRepository crepository;
 	
-//	@GetMapping("/booklist")
-//	public String bookList(Model model) {
-//		model.addAttribute("books", brepository.findAll());
-//		return "booklist";
-//	}
-	
 	@GetMapping("/booklist")
+	public String bookList(Model model) {
+		model.addAttribute("books", brepository.findAll());
+		return "booklist";
+	}
+	
+	@GetMapping("/books")
 	public @ResponseBody List<Book> bookListRest() {
 		return (List<Book>) brepository.findAll();
 	}
@@ -47,10 +50,16 @@ public class BookController {
         return "addbook";
     }
 	
+	
 	@PostMapping("/save")
     public String save(Book book){
         brepository.save(book);
         return "redirect:booklist";
+    }
+	
+	@PostMapping("/books")
+    public @ResponseBody Book saveBookRest(@RequestBody Book book) {	
+    	return brepository.save(book);
     }
 	
 	@GetMapping("/delete/{id}")
