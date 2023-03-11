@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +44,13 @@ public class BookController {
 		return brepository.findById(bookId);
 	}
 	
+	@PostMapping("/overwrite/{id}")
+    public String overwrite(@PathVariable("id") Long id, Book book){
+        brepository.deleteById(id);
+        brepository.save(book);
+        return "redirect:../booklist";
+    }
+	
 	@GetMapping("/add")
 	public String addBook(Model model){
     	model.addAttribute("book", new Book());
@@ -54,7 +62,7 @@ public class BookController {
 	@PostMapping("/save")
     public String save(Book book){
         brepository.save(book);
-        return "redirect:booklist";
+        return "redirect:/booklist";
     }
 	
 	@PostMapping("/books")
@@ -62,6 +70,7 @@ public class BookController {
     	return brepository.save(book);
     }
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/delete/{id}")
     public String deleteBook(@PathVariable("id") Long id, Model model) {
     	brepository.deleteById(id);
