@@ -44,13 +44,6 @@ public class BookController {
 		return brepository.findById(bookId);
 	}
 	
-	@PostMapping("/overwrite/{id}")
-    public String overwrite(@PathVariable("id") Long id, Book book){
-        brepository.deleteById(id);
-        brepository.save(book);
-        return "redirect:../booklist";
-    }
-	
 	@GetMapping("/add")
 	public String addBook(Model model){
     	model.addAttribute("book", new Book());
@@ -70,7 +63,7 @@ public class BookController {
     	return brepository.save(book);
     }
 	
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/delete/{id}")
     public String deleteBook(@PathVariable("id") Long id, Model model) {
     	brepository.deleteById(id);

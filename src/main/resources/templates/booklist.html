@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
->
 <head>
 <title>Booklist</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -21,7 +20,7 @@
 	</div>
 	<h1>Booklist:</h1>
 
-	
+
 	<table class="table table-striped">
 		<tr>
 			<th>Title</th>
@@ -30,7 +29,7 @@
 			<th>Year</th>
 			<th>ISBN</th>
 			<th>Price</th>
-			<th sec:authorize="hasRole('ADMIN')"></th>
+			<th sec:authorize="hasAuthority('ADMIN')"></th>
 		</tr>
 		<tr th:each="book : ${books}">
 			<td th:text="${book.title}"></td>
@@ -41,7 +40,7 @@
 			<td th:text="${book.price}"></td>
 			<!-- <td><a class="btn btn-secondary" th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td> -->
 			<!-- <td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td> -->
-			<td sec:authorize="hasRole('ADMIN')"><a
+			<td sec:authorize="hasAuthority('ADMIN')"><a
 				th:href="@{/delete/{id}(id=${book.id})}"
 				class="btn btn-xs btn-danger">Delete</a></td>
 	</table>
