@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import hh.Bookstore.domain.Book;
 import hh.Bookstore.domain.BookRepository;
+import hh.Bookstore.domain.Category;
 import hh.Bookstore.domain.CategoryRepository;
 
 @Controller
@@ -73,6 +74,7 @@ public class BookController {
 	@GetMapping("/edit/{book}")
     public String editBook(@PathVariable("book") Book book, Model model) {
     	model.addAttribute(book);
+    	model.addAttribute("categories", crepository.findAll());
         return "editbook";
     }
 		

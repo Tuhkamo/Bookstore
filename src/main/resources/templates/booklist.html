@@ -38,7 +38,7 @@
 			<td th:text="${book.year}"></td>
 			<td th:text="${book.isbn}"></td>
 			<td th:text="${book.price}"></td>
-			<!-- <td><a class="btn btn-secondary" th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td> -->
+			<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-secondary" th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
 			<!-- <td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td> -->
 			<td sec:authorize="hasAuthority('ADMIN')"><a
 				th:href="@{/delete/{id}(id=${book.id})}"
